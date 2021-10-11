@@ -1,0 +1,97 @@
+class Nodo:
+     def __init__(self, value, siguiente=None):
+       self.data = value
+       self.next = siguiente
+head = Nodo(5, Nodo(6, Nodo(7, Nodo (8, Nodo(9)))))
+
+print(head.next.next.data)
+head = Nodo(5, Nodo(6, Nodo(7, Nodo (8, Nodo(9)))))
+
+curr_node = head
+while curr_node != None:
+   print(curr_node.data)
+   curr_node =curr_node.next
+
+print("agrega 10 al final ")
+curr_node = head 
+
+while curr_node.next != None:
+     curr_node = curr_node.next
+
+curr_node.next = Nodo(10)
+
+curr_node = head
+
+while curr_node != None:
+       print(curr_node.data )
+       curr_node = curr_node.next 
+class Nodo:
+  def __init__(self , value , siguiente=None ):
+    self.data = value
+    self.next = siguiente 
+
+
+
+class LinkedListADT:
+    def _init_( self ):
+        self.head = None
+
+    def is_empty( self ):
+        return self.head == None
+
+    def get_tail( self ):
+        curr_node = self.head
+        if curr_node != None:
+            while curr_node.next != None:
+                curr_node = curr_node.next
+        return curr_node
+
+    def append( self , dato ):
+        if self.is_empty() :
+            self.head = Nodo( dato )
+        else:
+            #self.get_tail().next = Nodo(dato)
+            tmp = self.get_tail()
+            tmp.next = Nodo(dato)
+
+    def preAppend( self, dato ):
+        tmp = self.head
+        self.head = Nodo( dato, tmp )
+
+    def transversal( self ):
+        curr_node = self.head
+        while curr_node != None:
+            if curr_node.next == None:
+                print( curr_node.data)
+                curr_node = curr_node.next
+            else: 
+                print( curr_node.data , end=" --> ")
+                curr_node = curr_node.next
+    
+    def remove( self, dato ):
+        curr_node = self.head
+        if curr_node != None:
+            while curr_node.next != None:
+                if curr_node.next.data == dato:
+                    if curr_node.next.next != None:
+                        curr_node.next = curr_node.next.next 
+                else:
+                    curr_node = curr_node.next 
+
+    def pop( self ):
+        curr_node = self.head
+        while curr_node.next.next != None :
+            curr_node = curr_node.next 
+        curr_node.next = None
+    
+    def prePop( self ):
+        self.head = self.head.next
+def main():
+    lsl = LinkedListADT()
+    print( lsl.is_empty() )
+    nodo = lsl.get_tail()
+    print(nodo) # None
+    lsl.append(10)
+    lsl.append(20)
+    lsl.transversal()
+    
